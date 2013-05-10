@@ -16,7 +16,6 @@ class Task < ActiveRecord::Base
 
   def delete(id)
     self.class.find_by_id(*id.to_i).delete
-    reindex
   end
 
   def self.add(task)
@@ -27,5 +26,5 @@ class Task < ActiveRecord::Base
   def self.complete(id)
     self.find_by_id(id).update_attribute(:completed, true)
     list
-  end 
+  end
 end
