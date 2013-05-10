@@ -36,11 +36,11 @@ task "db:generate:migration", :name do |t, args|
   # touch "#{timestamp}_#{name}.rb"a
   unless File.exists?("#{timestamp}_#{name}.rb")
     File.open("db/migrate/#{timestamp}_create_#{name}.rb", 'w') do |f|
-      f.write("require_relative '../config'
+      f.write("
 
 class Create#{name.capitalize} < ActiveRecord::Migration
   def change
-    create_table #{name.to_sym} do |t|
+    create_table :#{name} do |t|
 
       t.timestamps
 
