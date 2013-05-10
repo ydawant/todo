@@ -1,9 +1,5 @@
-class CreateAdd_column < ActiveRecord::Migration
+class CreateAddColumn < ActiveRecord::Migration
   def change
-    create_table :add_column do |t|
-
-      t.timestamps
-
-    end
+    add_column :users, :last_log_in, :time
   end
 end

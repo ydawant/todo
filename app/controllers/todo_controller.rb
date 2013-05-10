@@ -64,9 +64,18 @@ EOF
     User.the_current_user_method
   end
 
-  def sign_in(input)
-    User.sign_in(input)
+  def who_it_be
+    p current_user
   end
+
+  def log_in(input)
+    if User.check_password(input) 
+      User.sign_in(input) 
+    else
+      raise "Wrong password, hacker."
+    end
+  end
+  
 end
 
 class TodoView

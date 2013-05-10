@@ -21,3 +21,4 @@ tag_opts.each { |t| Tag.create(:tag_name => t) }
   Tagging.create(:task_id => rand(40)+1, :tag_id => rand(9)+1)
 end
 
+User.all.each { |user| user.update_attributes(:last_log_in => Time.now) }
