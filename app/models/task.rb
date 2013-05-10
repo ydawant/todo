@@ -1,13 +1,12 @@
 class Task < ActiveRecord::Base
 
   belongs_to :list
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   def to_s
-    if completed
-      puts "[X] #{id}: #{task}"
-    else
-      puts "[ ] #{id}: #{task}"
-    end
+    completed = self.completed ? "[X]" : "[ ]" 
+    "#{completed} #{self.id}: #{self.task}"
   end
 
   def self.list
@@ -17,14 +16,5 @@ class Task < ActiveRecord::Base
   def delete(id)
     self.class.find_by_id(*id.to_i).delete
   end
-
-  def self.add(task)
-    self.create(:task => task[0], :completed => false)
-    list
-  end
-
-  def self.complete(id)
-    self.find_by_id(id).update_attribute(:completed, true)
-    list
-  end
+  
 end
